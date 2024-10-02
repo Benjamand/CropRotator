@@ -1,32 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<meta charset="UTF-8">
+@extends('layout')
+    @section('content')
+
 <script defer src={{asset("scripts/Form.js")}}></script>
-
-<link rel="stylesheet" href={{asset("css/style.css")}}>
-
-<!-- Header -->
-<header>
-    <title>
-        Musicify
-    </title>
-</header>
-
-<!-- BODY -->
-
-<head>
-    <header>
-        <meta charset="UTF-8">
-        <title>"Music"</title>
-        <h1 style="background-color:DodgerBlue;">Musicify</h1>
-    </header>
-</head>
 
 
 <body>
 
-<form id="form" action="/action_page.php">
+<form id="form" action="{{ route('store') }}">
 
+    @csrf
 
 
     <!-- Navigation -->
@@ -95,7 +77,7 @@
         </div>
 
         <!-- Submit -->
-        <button class="button button1 submitButton" id="submitButton">Submit</button>
+        <button class="button button1 submitButton" id="submitButton" href="{{ route('store') }}">Submit</button>
         <!-- Submit
       <br><input type="submit" value="Submit"> <br>
           -->
@@ -104,13 +86,6 @@
 
 </form>
 
-<!-- Footer -->
-<div>
-    <footer>
-        <p>FOOTER</p>
-    </footer>
-</div>
 </body>
-
-</html>
+@endsection
 
