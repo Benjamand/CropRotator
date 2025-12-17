@@ -1,10 +1,8 @@
-<!-- CSS code -->
-
-header {
-  background-color:DodgerBlue;
+/* header {
+  background-color: DodgerBlue;
   padding: 30px;
   text-align: center;
-  font-size: 35px;
+  font-size: 50px;
   color: white;
 }
 
@@ -24,6 +22,7 @@ nav a {
   text-decoration: none;
   font-size: 20px;
 }
+
 nav input[type=text] {
   float: right;
   padding: 6px;
@@ -32,6 +31,7 @@ nav input[type=text] {
   margin-right: 16px;
   font-size: 17px;
 }
+
 section {
   background-color: #ffffff;
   height: auto;
@@ -40,14 +40,27 @@ section {
 
 footer {
   background-color: DodgerBlue;
-  padding: 20px;
-  text-align: center;
-  color: white;
+  padding: 10px;
+
+  font-size: 30px;
+  color: Black;
 }
-<!-- Submit-Button -->
-.button {
+
+.headLink {
   border: none;
   color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button {
+  border: none;
+  color: DodgerBlue;
   padding: 15px 32px;
   text-align: center;
   text-decoration: none;
@@ -61,7 +74,9 @@ footer {
   margin-top: 50px;
 }
 
-.button1 {background-color: #04AA6D;} /* Green */
+.button1 {
+  background-color: #04AA6D;
+}
 
 
 
@@ -79,3 +94,9 @@ footer {
   margin: 20px;
 }
 
+.musicify-heading {
+  background-color: DodgerBlue;
+  font-size: 40px;
+  color: black;
+}
+  */

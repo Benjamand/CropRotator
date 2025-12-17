@@ -1,91 +1,71 @@
 @extends('layout')
-    @section('content')
+@section('content')
 
-<script defer src={{asset("scripts/Form.js")}}></script>
+    <script defer src="{{ asset('scripts/Form.js') }}"></script>
 
+    <div class="max-w-2xl mx-auto bg-white shadow-lg rounded-lg p-8">
 
-<body>
+        <h1 class="text-2xl font-bold mb-6 text-gray-800">
+            Create Article
+        </h1>
 
-<form id="form" action="{{ route('store') }}">
+        <form id="form" action="{{ route('store') }}" method="POST" class="space-y-6">
+            @csrf
 
-    @csrf
+            @if($errors->any())
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded">
+                    <ul class="list-disc list-inside">
+                        @foreach($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
 
-
-    <!-- Navigation -->
-    <nav>
-        <ul>
-            <a class="active" href="#home">Home</a>
-            <a href="MyAlbumLink"> My albums</a>
-            <a href="WishlistLink">Wishlist</a>
-            <a href="FriendsLink">Friends</a>
-            <input type="text" placeholder="Search.."> <br>
-        </ul>
-    </nav>
-
-    <!-- Section: Body -->
-    <section>
-        <div>
+            <!-- Article title -->
             <div>
-                <label for="fname">Album name:</label><br>
-                <input type="text" id="fname" name="fname" value=""><br>
-                <label for="ryear">Release year:</label><br>
-                <input type="number" id="ryear" name="ryear" value=""><br><br>
+                <label for="articleName" class="block text-sm font-medium text-gray-700">
+                    Article title
+                </label>
+                <input type="text" id="articleName" name="articleName"
+                    class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
             </div>
 
-            <div id="Artists">
-                <label for="fname">Artist:</label><br>
-                <input type="checkbox" id="Artist1" name="Artist1" value="Drake">
-                <label for="Artist1"> Drake </label><br>
-                <input type="checkbox" id="Artist2" name="Artist2" value="Lamin">
-                <label for="Artist2"> Lamin </label><br>
-                <input type="checkbox" id="Artist3" name="Artist3" value="Khaybar">
-                <label for="Artist3"> Khaybar </label><br><br>
-            </div>
-
+            <!-- Release year -->
             <div>
-                <label for="Kunstnerid">Choose a feat. Artist :</label>
-
-                <select name="Kunstner" id="Kunstnerid"><br>
-                    <option value="Khaybar">Khaybar</option>
-                    <option value="Dj OmarDick">DJ OmarDick</option>
-                    <option value="K to the O">K to the O</option>
-                    <option value="Pumper KO">Pumper KO</option>
-                </select><br><br>
+                <label for="ryear" class="block text-sm font-medium text-gray-700">
+                    Release year
+                </label>
+                <input type="number" id="ryear" name="ryear"
+                    class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
             </div>
 
+            <!-- Author -->
             <div>
-                <label for="fname">Type:</label><br>
-                <input type="radio" id="single" name="single" value="">
-                <label for="single"> Single </label><br>
-                <input type="radio" id="EP" name="EP" value="">
-                <label for="EP"> EP </label><br>
-                <input type="radio" id="album" name="album" value="">
-                <label for="album"> Album </label><br><br>
+                <label for="authorName" class="block text-sm font-medium text-gray-700">
+                    Author
+                </label>
+                <input type="text" id="authorName" name="authorName"
+                    class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500">
             </div>
 
+            <!-- Content -->
             <div>
-                <label for="fname">Desciption:</label><br>
-                <textarea id ="description" name="description" rows="4" cols="50">
-  </textarea><br>
+                <label for="description" class="block text-sm font-medium text-gray-700">
+                    Content
+                </label>
+                <textarea id="content" name="content" rows="5"
+                    class="mt-1 w-full rounded-md border-gray-300 shadow-sm focus:border-blue-500 focus:ring-blue-500"></textarea>
             </div>
 
-            <br><label for="fname">Tracks:</label><br>
-            <div id="tracks">
-                <input type="text" class="tracks" id="Tracksid" name="Tracks" maxlength="10"><br>
+            <!-- Submit -->
+            <div class="flex justify-end">
+                <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-md hover:bg-blue-700 transition">
+                    Submit
+                </button>
             </div>
-            <button type="button" class="button button1 addButton" id="addButton">Add</button>
-        </div>
 
-        <!-- Submit -->
-        <button class="button button1 submitButton" id="submitButton" href="{{ route('store') }}">Submit</button>
-        <!-- Submit
-      <br><input type="submit" value="Submit"> <br>
-          -->
+        </form>
+    </div>
 
-    </section>
-
-</form>
-
-</body>
 @endsection
-

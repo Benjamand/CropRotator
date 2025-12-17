@@ -3,11 +3,60 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "build": "vite build"
+        "build": "vite build",
+        "tw:init": "tailwindcss init -p"
     },
     "devDependencies": {
+        "autoprefixer": "^10.4.23",
         "axios": "^1.7.4",
         "laravel-vite-plugin": "^1.0",
+        "postcss": "^8.5.6",
+        "tailwindcss": "^3.4.19",
         "vite": "^5.0"
-    }
+    },
+    "name": "webtech",
+    "version": "1.0.0",
+    "description": "<p align=\"center\"><a href=\"https://laravel.com\" target=\"_blank\"><img src=\"https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg\" width=\"400\" alt=\"Laravel Logo\"></a></p>",
+    "main": "vite.config.js",
+    "directories": {
+        "test": "tests"
+    },
+    "dependencies": {
+        "asynckit": "^0.4.0",
+        "baseline-browser-mapping": "^2.9.6",
+        "browserslist": "^4.28.1",
+        "caniuse-lite": "^1.0.30001760",
+        "combined-stream": "^1.0.8",
+        "delayed-stream": "^1.0.0",
+        "electron-to-chromium": "^1.5.267",
+        "esbuild": "^0.21.5",
+        "escalade": "^3.2.0",
+        "follow-redirects": "^1.15.9",
+        "form-data": "^4.0.0",
+        "fraction.js": "^5.3.4",
+        "mime-db": "^1.52.0",
+        "mime-types": "^2.1.35",
+        "nanoid": "^3.3.11",
+        "node-releases": "^2.0.27",
+        "normalize-range": "^0.1.2",
+        "picocolors": "^1.1.1",
+        "picomatch": "^2.3.1",
+        "postcss-value-parser": "^4.2.0",
+        "proxy-from-env": "^1.1.0",
+        "rollup": "^4.22.4",
+        "source-map-js": "^1.2.1",
+        "update-browserslist-db": "^1.2.2",
+        "vite-plugin-full-reload": "^1.2.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/Benjamand/WebTech.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/Benjamand/WebTech/issues"
+    },
+    "homepage": "https://github.com/Benjamand/WebTech#readme"
 }
