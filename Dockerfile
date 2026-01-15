@@ -1,4 +1,3 @@
-
 # 1️⃣ Vite build stage
 FROM node:20-alpine AS vite-build
 WORKDIR /app
@@ -30,12 +29,9 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
 # Composer install
 RUN composer install --no-dev --optimize-autoloader
 # Laravel optimizations
-# Laravel optimizations
 RUN php artisan config:clear \
     && php artisan route:clear \
-    && php artisan view:clear \
-    && php artisan db:seed --force
-
+    && php artisan view:clear
 # Nginx
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 # Entrypoint
