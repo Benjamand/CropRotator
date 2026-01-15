@@ -33,7 +33,7 @@ RUN composer install --no-dev --optimize-autoloader
 RUN php artisan config:clear \
     && php artisan route:clear \
     && php artisan view:clear \
-    && php artisan db:seed
+    php artisan db:seed --force
 # Nginx
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 # Entrypoint
