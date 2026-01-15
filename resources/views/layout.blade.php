@@ -6,8 +6,7 @@
     <title>Crop Rotation</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <link rel="stylesheet" href="{{ url('/build/assets/app-fNCE5DMw.css') }}">
-    <script src="{{ url('/build/assets/app-z-Rg4TxU.js') }}" defer></script>
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 
 
 

@@ -1,37 +1,43 @@
-FROM php:8.3-cli
 
-WORKDIR /var/www
-
-# Install PHP extensions needed for Laravel & Composer
+# 1️⃣ Vite build stage
+FROM node:20-alpine AS vite-build
+WORKDIR /app
+COPY package*.json ./
+RUN npm install
+COPY resources ./resources
+COPY vite.config.* ./
+RUN npm run build
+# 2️⃣ PHP + Nginx stage
+FROM php:8.3-fpm
+# System deps
 RUN apt-get update && apt-get install -y \
+    nginx \
     git \
     unzip \
-    libzip-dev \
     libpq-dev \
-    && docker-php-ext-install pdo pdo_pgsql zip \
+    && docker-php-ext-install pdo pdo_pgsql \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
-
-# Copy Composer binary
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
-
-# Copy Laravel app INCLUDING prebuilt assets in public/build
+WORKDIR /var/www
+# Copy Laravel app
 COPY . .
-
-# Set permissions for storage & cache
+# Copy prebuilt Vite assets
+COPY --from=vite-build /app/public/build /var/www/public/build
+# Permissions for Laravel
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
     && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
-
-# Install PHP dependencies
+# Composer install
 RUN composer install --no-dev --optimize-autoloader
-
 # Laravel optimizations
 RUN php artisan config:clear \
     && php artisan route:clear \
     && php artisan view:clear
-
-# Expose default port for Render
-EXPOSE 8000
-
-# Run PHP built-in server
-CMD ["sh", "-c", "php -S 0.0.0.0:${PORT:-8000} -t public"]
+# Nginx
+COPY docker/nginx.conf /etc/nginx/nginx.conf
+# Entrypoint
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+EXPOSE 80
+ENTRYPOINT ["/entrypoint.sh"]
+CMD service nginx start && php-fpm
