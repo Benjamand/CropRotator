@@ -1,36 +1,42 @@
-FROM php:8.2-fpm
+FROM php:8.3-fpm
 
-# ---- System dependencies ----
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
-    git \
-    curl \
-    zip \
-    unzip \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    libzip-dev \
-    default-mysql-client \
     nginx \
-    && docker-php-ext-install pdo_mysql mbstring zip exif pcntl
+    git \
+    unzip \
+    libpq-dev \
+    nodejs \
+    npm \
+    && docker-php-ext-install pdo pdo_pgsql
 
-# ---- Composer ----
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
+# Install Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# ---- App setup ----
+# Set working directory
 WORKDIR /var/www
 
+# Copy app
 COPY . .
 
+# Install PHP deps
 RUN composer install --no-dev --optimize-autoloader
 
-RUN php artisan config:clear && php artisan route:clear && php artisan view:clear
+# Install Node deps & build assets
+RUN npm install && npm run build
 
-# ---- Nginx config ----
-COPY ./docker/nginx.conf /etc/nginx/nginx.conf
+# Laravel optimizations
+RUN php artisan key:generate --force \
+    && php artisan config:clear \
+    && php artisan route:clear \
+    && php artisan view:clear
 
-# ---- Permissions ----
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache
+# Nginx config
+COPY docker/nginx.conf /etc/nginx/nginx.conf
+
+# Permissions
+RUN chown -R www-data:www-data /var/www \
+    && chmod -R 755 /var/www/storage
 
 EXPOSE 80
 
