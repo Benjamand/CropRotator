@@ -32,7 +32,8 @@ RUN composer install --no-dev --optimize-autoloader
 # Laravel optimizations
 RUN php artisan config:clear \
     && php artisan route:clear \
-    && php artisan view:clear
+    && php artisan view:clear \
+    && php artisan db:seed
 # Nginx
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 # Entrypoint
