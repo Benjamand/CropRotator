@@ -19,7 +19,7 @@ RUN npm run build
 ############################
 FROM php:8.3-fpm
 
-# System deps (NO node here)
+# System deps
 RUN apt-get update && apt-get install -y \
     nginx \
     git \
@@ -54,10 +54,6 @@ RUN php artisan config:clear \
 
 # Nginx config
 COPY docker/nginx.conf /etc/nginx/nginx.conf
-
-# Permissions
-RUN chown -R www-data:www-data /var/www \
-    && chmod -R 755 /var/www/storage /var/www/bootstrap/cache
 
 # Entrypoint
 COPY docker/entrypoint.sh /entrypoint.sh

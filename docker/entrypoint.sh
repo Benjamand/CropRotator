@@ -1,10 +1,10 @@
 #!/bin/sh
-
 set -e
 
-php artisan key:generate --force || true
-php artisan migrate --force
+# Only migrate in production if needed
+php artisan migrate --force || true
 
+# Start PHP-FPM and Nginx
 php-fpm -D
 nginx -g "daemon off;"
 

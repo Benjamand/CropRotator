@@ -8,14 +8,9 @@ export default defineConfig({
                 'resources/css/app.css',
                 'resources/js/app.js',
             ],
-            refresh: true,
+            // refresh is only for dev server
         }),
     ],
 
-    server: {
-        host: true, // listen on 0.0.0.0 inside Docker
-        port: 5173,
-        origin: 'http://localhost:5173', // THIS FIXES THE CORS ERROR
-        strictPort: true,
-    },
+    // No dev server config for production
 })
