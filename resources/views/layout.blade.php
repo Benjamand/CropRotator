@@ -6,8 +6,9 @@
     <title>Crop Rotation</title>
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <link rel="stylesheet" href="{{ url('/build/assets/app-fNCE5DMw.css') }}">
+    <script src="{{ url('/build/assets/app-z-Rg4TxU.js') }}" defer></script>
+
 
     @yield('styles')
 </head>

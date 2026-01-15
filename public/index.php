@@ -4,6 +4,13 @@ use Illuminate\Http\Request;
 
 define('LARAVEL_START', microtime(true));
 
+$port = getenv('PORT') ?: 80;
+// If you’re using the PHP built-in server locally for testing:
+if (php_sapi_name() === 'cli-server') {
+    echo "Listening on port $port\n";
+}
+
+
 // Determine if the application is in maintenance mode...
 if (file_exists($maintenance = __DIR__.'/../storage/framework/maintenance.php')) {
     require $maintenance;

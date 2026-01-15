@@ -54,10 +54,11 @@ Route::get('/test', fn () => view('test'));
 
 Route::get('/articles/{id}', [ArticleController::class, 'show']);
 
-Route::get('/debug-file/{filename}', function ($filename) {
-    $path = public_path($filename);
-    if (file_exists($path)) {
-        return response("Found: $filename", 200);
+Route::get('/build/{file}', function ($file) {
+    $path = public_path("build/{$file}");
+    if (!file_exists($path)) {
+        abort(404);
     }
-    return response("Missing: $filename", 404);
+    $mime = mime_content_type($path);
+    return response()->file($path, ['Content-Type' => $mime]);
 });
