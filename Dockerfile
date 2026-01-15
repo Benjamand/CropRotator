@@ -30,10 +30,12 @@ RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
 # Composer install
 RUN composer install --no-dev --optimize-autoloader
 # Laravel optimizations
+# Laravel optimizations
 RUN php artisan config:clear \
     && php artisan route:clear \
     && php artisan view:clear \
-    php artisan db:seed --force
+    && php artisan db:seed --force
+
 # Nginx
 COPY docker/nginx.conf /etc/nginx/nginx.conf
 # Entrypoint
