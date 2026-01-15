@@ -40,6 +40,10 @@ COPY . .
 # Copy built Vite assets from stage 1
 COPY --from=vite-build /app/public/build /var/www/public/build
 
+# Set proper permissions for Laravel storage and cache
+RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
+    && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
+
 # PHP deps
 RUN composer install --no-dev --optimize-autoloader
 
