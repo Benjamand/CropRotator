@@ -46,7 +46,6 @@
                         const articleList = document.getElementById('article-list');
                         const currentIds = new Set(data.articles.map(a => a.id));
 
-                        // Remove deleted articles
                         articleCache.forEach((_, id) => {
                             if (!currentIds.has(id)) {
                                 document.getElementById(`article-${id}`)?.remove();
@@ -54,7 +53,6 @@
                             }
                         });
 
-                        // Add new articles
                         data.articles.forEach(article => {
                             if (!articleCache.has(article.id)) {
                                 const li = document.createElement('li');
@@ -66,7 +64,6 @@
                                         <p><b>Author:</b> ${article.author.name}</p>
                                     `;
 
-                                // View button (same as index)
                                 const viewButton = document.createElement('button');
                                 viewButton.textContent = 'View';
                                 viewButton.className = 'button';
@@ -74,7 +71,6 @@
                                     window.location.href = `/articles/${article.id}`;
                                 };
 
-                                // Delete button
                                 const deleteButton = document.createElement('button');
                                 deleteButton.textContent = 'Delete';
                                 deleteButton.className = 'button deleteButton';
