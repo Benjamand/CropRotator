@@ -27,7 +27,7 @@ COPY --from=vite-build /app/public/build /var/www/public/build
 RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
     && chmod -R 775 /var/www/storage /var/www/bootstrap/cache
 # Composer install
-RUN composer install --no-dev --optimize-autoloader
+RUN composer install --optimize-autoloader
 # Laravel optimizations
 RUN php artisan config:clear \
     && php artisan route:clear \
