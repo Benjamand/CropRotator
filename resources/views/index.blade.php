@@ -1,6 +1,11 @@
 @extends('layout')
 
 @section('content')
+    ini_set('display_errors', 1);
+    ini_set('display_startup_errors', 1);
+    error_reporting(E_ALL);
+
+
 
     @if(session('success'))
         <div class="mb-6 rounded bg-green-100 text-green-800 px-4 py-3">
@@ -67,10 +72,10 @@
                             const li = document.createElement('li');
                             li.id = `article-${article.id}`;
                             li.innerHTML = `
-                                                                                                                    <b>Article Name:</b> ${article.name}<br>
-                                                                                                                    <b>Author name:</b> ${article.author.name}<br>
-                                                                                                                    <b>Created by user:</b> ${article.user.name}<br>
-                                                                                                                `;
+                                                                                                                        <b>Article Name:</b> ${article.name}<br>
+                                                                                                                        <b>Author name:</b> ${article.author.name}<br>
+                                                                                                                        <b>Created by user:</b> ${article.user.name}<br>
+                                                                                                                    `;
                             const viewButton = document.createElement('button');
                             viewButton.textContent = 'View';
                             viewButton.classList.add('button');

@@ -12,5 +12,10 @@ export default defineConfig({
         }),
     ],
 
+    base: '/build/',
+    build: {
+        outDir: 'public/build',
+    },
+
     // No dev server config for production
 })

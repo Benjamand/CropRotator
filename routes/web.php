@@ -53,3 +53,11 @@ Route::get('/map', [FarmerController::class, 'map'])->name('map');
 Route::get('/test', fn () => view('test'));
 
 Route::get('/articles/{id}', [ArticleController::class, 'show']);
+
+Route::get('/debug-file/{filename}', function ($filename) {
+    $path = public_path($filename);
+    if (file_exists($path)) {
+        return response("Found: $filename", 200);
+    }
+    return response("Missing: $filename", 404);
+});
