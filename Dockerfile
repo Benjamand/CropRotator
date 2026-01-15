@@ -40,4 +40,8 @@ RUN chown -R www-data:www-data /var/www \
 
 EXPOSE 80
 
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]
 CMD service nginx start && php-fpm
