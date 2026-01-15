@@ -10,6 +10,8 @@
     <script src="{{ url('/build/assets/app-z-Rg4TxU.js') }}" defer></script>
 
 
+
+
     @yield('styles')
 </head>
 
